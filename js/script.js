@@ -144,6 +144,8 @@ const openModal = (id) => {
 };
 
 const init = () => {
+    const filterForm = document.querySelector('.filter__form');
+
     const cardsList = document.querySelector(".cards__list");
     // select city
     const citySelect = document.querySelector("#city");
@@ -188,7 +190,28 @@ const init = () => {
             const vacancyId = vacancyCard.dataset.id;
             openModal(vacancyId);
         }
-    })
+    });
+
+    // filter
+    filterForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(filterForm);
+
+        const urlWithParam = new URL(`${API_URL}${VACANCY_URL}`);
+
+        formData.forEach((value, key) => {
+            urlWithParam.searchParams.append(key, value);
+        });
+
+        getData(
+            urlWithParam, 
+            (data) => {
+                renderVacancy(data, cardsList);
+            }, 
+            renderError
+            );
+    });
 };
 
 init();
