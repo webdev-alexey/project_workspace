@@ -40,25 +40,34 @@
         display: flex;
         align-items: center;
         margin-bottom: 24px;
-        transition: margin-bottom 0.2s ease-in-out;
-        transition-delay: 0.2s;
+        transition-property: margin-bottom, color;
+        transition-duration: 0.2s, 0.3s;
+        transition-timing-function: ease-in-out;
+        transition-delay: 0.2s, 0s;
+        color: #2a18ff;
+        line-height: 20px;
     }
 
-    .vacancies__filter-btn::after {
-        content: "";
+    .vacancies__filter-btn:hover:not(:focus) {
+        color: #a6adff;
+    }
+
+    .vacancies__filter-btn-arrow {
+        position: relative;
+        top: -2px;
         display: block;
         width: 20px;
         height: 20px;
-        background: url("../img/arrow-blue.svg") no-repeat center;
     }
 
     .vacancies__filter-btn_active {
         margin-bottom: 32px;
-        transition-delay: 0;
+        transition-delay: 0s, 0s;
     }
 
-    .vacancies__filter-btn_active::after {
+    .vacancies__filter-btn_active .vacancies__filter-btn-arrow {
         transform: rotate(180deg);
+        top: 2px;
     }
 
     .vacancies__filter {
